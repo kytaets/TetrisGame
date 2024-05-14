@@ -1,0 +1,67 @@
+body {
+    background-color: #A8E0F5;
+}
+
+h1, h3{
+    text-align: center;
+    font-family: "VT323", monospace;
+    font-weight: 400;
+    margin: 0;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.container {
+    display: flex;
+}
+
+.crane-container {
+    width: 532px;
+    height: 470px;
+    margin-left: 50px;
+    background-image: url("crane-image.png");
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.grid {
+    width: 200px;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 3mm ridge rgb(54, 255, 74);
+}
+
+.grid div {
+    height: 20px;
+    width: 20px;
+}
+
+.mini-grid {
+    margin-top: 100px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    /* border: 3mm ridge rgb(54, 255, 74); */
+}
+
+.mini-grid div {
+    height: 20px;
+    width: 20px;
+}
+
+.tetromino {
+    background-color: blue;
+}
+
+
