@@ -201,9 +201,10 @@ document.addEventListener('DOMContentLoaded', () =>{
                 row.forEach(index => {
                     squares[index].classList.remove('taken')
                     squares[index].classList.remove('tetromino')
+                    squares[index].removeAttribute("class")
                 })
                 const squaresRemoved = squares.splice(i, width)
-                squares = squaresRemoved.concat(squaresRemoved)
+                squares = squaresRemoved.concat(squares)
                 squares.forEach(cell => grid.appendChild(cell))
             }
         }
