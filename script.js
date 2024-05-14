@@ -3,8 +3,10 @@ document.addEventListener('DOMContentLoaded', () =>{
     let squares = Array.from(document.querySelectorAll('.grid div'))
     const scoreDisplay = document.querySelector('#score')
     const startBtn = document.querySelector('#start-btn')
+
     const width = 10;
     let nextRandom = 0;
+    let nextColor;
     let timerId
     let score = 0
 
@@ -40,26 +42,30 @@ document.addEventListener('DOMContentLoaded', () =>{
         [width, width+1, width+2, width+3]
     ]
     
-
     const tetrominoes = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
+    const colors = ["red", "yellow", "green", "purple", "blue"]
 
     let currentPosition = 4
     let currentRotation = 0
 
     //choosing random tetromino
     let random = Math.floor(Math.random()*tetrominoes.length)
+    let randomColor = colors[Math.floor(Math.random()*colors.length)]
     let current = tetrominoes[random][currentRotation]
 
     //draw the tetramino
     function draw() {
         current.forEach(index => {
             squares[currentPosition + index].classList.add('tetromino')
+            squares[currentPosition + index].classList.add(randomColor)
         })
     }
 
     function undraw() {
         current.forEach(index => {
             squares[currentPosition + index].classList.remove('tetromino')
+            squares[currentPosition + index].classList.remove(randomColor)
+
         })
     }
 
@@ -77,6 +83,10 @@ document.addEventListener('DOMContentLoaded', () =>{
             })
             random = nextRandom
             nextRandom = Math.floor(Math.random() * tetrominoes.length)
+
+            randomColor = nextColor
+            nextColor = colors[Math.floor(Math.random()*colors.length)]
+
             current = tetrominoes[random][currentRotation]
             currentPosition = 4
             draw()
@@ -150,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     const nextTetrominoes = [
         [2, displayWidth+2, displayWidth*2+2, 3],                   //l
         [2, displayWidth+2, displayWidth+3, displayWidth*2+3],      //z
-        [1, displayWidth, displayWidth+1, displayWidth+2],          //t
+        [2, displayWidth+1, displayWidth+2, displayWidth+3],        //t
         [1,2, displayWidth+1, displayWidth+2],                      //o
         [2, displayWidth+2, displayWidth*2+2, displayWidth*3+2]     //i
     ]
@@ -159,9 +169,11 @@ document.addEventListener('DOMContentLoaded', () =>{
     function displayShape() {
         displaySquare.forEach(square => {
             square.classList.remove('tetromino')
+            square.classList.remove(randomColor)
         })
         nextTetrominoes[nextRandom].forEach(index => {
             displaySquare[displayIndex + index].classList.add('tetromino')
+            displaySquare[displayIndex + index].classList.add(nextColor)
         })
     }
 
@@ -174,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () =>{
             draw()
             timerId = setInterval(moveDown, 500)
             nextRandom = Math.floor(Math.random() * tetrominoes.length)
+            nextColor = colors[Math.floor(Math.random()*colors.length)]
             displayShape()
         }
     })
@@ -190,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                     squares[index].classList.remove('tetromino')
                 })
                 const squaresRemoved = squares.splice(i, width)
-                squares = squaresRemoved.concat(squares)
+                squares = squaresRemoved.concat(squaresRemoved)
                 squares.forEach(cell => grid.appendChild(cell))
             }
         }

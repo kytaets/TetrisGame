@@ -61,7 +61,27 @@ h3 {
 }
 
 .tetromino {
-    background-color: blue;
+    height: 15.2px !important;
+    width: 15.2px !important;
+    border-style: outset;
+    border-color: black
 }
 
-
+.red {
+    background-color: red;
+}
+.yellow {
+    background-color: yellow;
+}
+.green {
+    background-color: green;
+}
+.purple {
+    background-color: purple;
+}
+.blue {
+    background-color: blue;
+}
+.uncoloured {
+    background-color: none;
+}
