@@ -7,6 +7,11 @@ document.addEventListener('DOMContentLoaded', () =>{
     const levelDisplay = document.querySelector("#level");
     const startBtn = document.querySelector('#start-btn');
     const displaySquare = document.querySelectorAll('.mini-grid div');   // selecting area for the next block   
+    
+    // Sounds
+    const gameOverSound = new Audio("./sounds/game-over.mp3")
+    const levelUpSound = new Audio("./sounds/level-up.mp3")
+    const rowClearSound = new Audio("./sounds/row-clear.mp3")
 
     const width = 10;
     let nextRandom = 0;
@@ -139,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
             if(row.every(index => squares[index].classList.contains('taken'))) {
                 score += 10
+                rowClearSound.play()
                 scoreDisplay.innerHTML = score
                 row.forEach(index => {
                     squares[index].classList.remove('taken')
@@ -157,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         if(current.some(index => squares[currentPosition + index].classList.contains('taken'))){
             clearInterval(timerId)
             scoreDisplay.innerHTML = "end"
+            gameOverSound.play()
             alert("Game is over😓 Try again!")
             window.location.href = "/"
         }
@@ -166,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     function levelUp(){
         level++
         timer /= 1.25
+        levelUpSound.play()
         levelDisplay.innerHTML = level
         clearInterval(timerId)
         timerId = setInterval(moveDown, timer)
