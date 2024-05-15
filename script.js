@@ -1,59 +1,27 @@
+import {tetrominoes, colors, nextTetrominoes} from './shapes.js'
+
 document.addEventListener('DOMContentLoaded', () =>{
-    const grid = document.querySelector('.grid')
-    let squares = Array.from(document.querySelectorAll('.grid div'))
-    const scoreDisplay = document.querySelector('#score')
-    const startBtn = document.querySelector('#start-btn')
+    const grid = document.querySelector('.grid');                        // selecting working area of cells
+    let squares = Array.from(document.querySelectorAll('.grid div'));    // selecting all cells
+    const scoreDisplay = document.querySelector('#score');
+    const startBtn = document.querySelector('#start-btn');
+    const displaySquare = document.querySelectorAll('.mini-grid div')    // selecting area for the next block   
 
     const width = 10;
     let nextRandom = 0;
     let nextColor;
-    let timerId
-    let score = 0
+    let timerId;
+    let score = 0;
 
-    //The Tetrominoes
-    const lTetromino = [
-        [1, width+1, width*2+1, 2],
-        [width, width+1, width+2, width*2+2],
-        [1, width+1, width*2+1, width*2],
-        [width, width*2, width*2+1, width*2+2]
-    ]
-    const zTetromino = [
-        [width+1, width+2, width*2, width*2+1],
-        [0, width, width+1, width*2+1],
-        [width+1, width+2, width*2, width*2+1],
-        [0, width, width+1, width*2+1]
-    ]
-    const tTetromino = [
-        [1, width, width+1, width+2],
-        [1, width+1, width+2, width*2+1],
-        [width, width+1, width+2, width*2+1],
-        [1, width, width+1, width*2+1]
-    ]
-    const oTetromino = [
-        [0, 1, width, width+1],
-        [0, 1, width, width+1],
-        [0, 1, width, width+1],
-        [0, 1, width, width+1]
-    ]
-    const iTetromino = [
-        [1, width+1, width*2+1, width*3+1],
-        [width, width+1, width+2, width+3],
-        [1, width+1, width*2+1, width*3+1],
-        [width, width+1, width+2, width+3]
-    ]
-    
-    const tetrominoes = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
-    const colors = ["red", "yellow", "green", "purple", "blue"]
+    let currentPosition = 4;
+    let currentRotation = 0;
 
-    let currentPosition = 4
-    let currentRotation = 0
+    // choosing random shape block
+    let random = Math.floor(Math.random()*tetrominoes.length);
+    let randomColor = colors[Math.floor(Math.random()*colors.length)];
+    let current = tetrominoes[random][currentRotation];
 
-    //choosing random tetromino
-    let random = Math.floor(Math.random()*tetrominoes.length)
-    let randomColor = colors[Math.floor(Math.random()*colors.length)]
-    let current = tetrominoes[random][currentRotation]
-
-    //draw the tetramino
+    // draw the block
     function draw() {
         current.forEach(index => {
             squares[currentPosition + index].classList.add('tetromino')
@@ -61,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         })
     }
 
+    // undraw the block
     function undraw() {
         current.forEach(index => {
             squares[currentPosition + index].classList.remove('tetromino')
@@ -69,13 +38,50 @@ document.addEventListener('DOMContentLoaded', () =>{
         })
     }
 
+    // moving block down, left, right and rotation
     function moveDown() {
         undraw()
         currentPosition += width
         draw()
         freeze()
     }
+    function moveLeft(){
+        undraw()
+        const isEdge = current.some(index => 
+            (currentPosition + index) % width === 0
+        )
 
+        if (!isEdge) 
+            currentPosition -=1
+        if(current.some(index => squares[currentPosition + index].classList.contains("taken")))
+            currentPosition +=1
+
+        draw()
+    }
+    function moveRight(){
+        undraw()
+        const isEdge = current.some(index => 
+            (currentPosition + index + 1) % width === 0
+        )
+        
+        if (!isEdge) 
+            currentPosition +=1
+        if(current.some(index => squares[currentPosition + index].classList.contains("taken")))
+            currentPosition -=1
+
+        draw()
+    }
+    function rotate() {
+        undraw()
+        currentRotation++
+        if(currentRotation === current.length){
+            currentRotation = 0
+        }
+        current = tetrominoes[random][currentRotation]
+        draw()
+    }
+
+    // actions when the block reach the bottom
     function freeze() {
         if(current.some(index => squares[currentPosition + index + width].classList.contains('taken'))){
             current.forEach(index => {
@@ -96,101 +102,19 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     }
 
-    function moveLeft(){
-        undraw()
-        const isEdge = current.some(index => 
-            (currentPosition + index) % width === 0
-        )
-
-        if (!isEdge) 
-            currentPosition -=1
-        if(current.some(index => squares[currentPosition + index].classList.contains("taken")))
-            currentPosition +=1
-
-        draw()
-    }
-    
-    function moveRight(){
-        undraw()
-        const isEdge = current.some(index => 
-            (currentPosition + index + 1) % width === 0
-        )
-        
-        if (!isEdge) 
-            currentPosition +=1
-        if(current.some(index => squares[currentPosition + index].classList.contains("taken")))
-            currentPosition -=1
-
-        draw()
-    }
-
-    function rotate() {
-        undraw()
-        currentRotation++
-        if(currentRotation === current.length){
-            currentRotation = 0
-        }
-        current = tetrominoes[random][currentRotation]
-        draw()
-    }
-
-    document.addEventListener("keypress", (event) => {
-        const pressedKey = event.key
-        console.log(pressedKey)
-        if(pressedKey === "a"){
-            moveLeft()
-        }
-        if(pressedKey === "d"){
-            moveRight()
-        }
-        if(pressedKey === "s"){
-            moveDown()
-        }
-        if(pressedKey === "w"){
-            rotate()
-        }
-        
-    })
-
-
-    const displaySquare = document.querySelectorAll('.mini-grid div')
-    const displayWidth = 4
-    let displayIndex = 0
-
-    const nextTetrominoes = [
-        [2, displayWidth+2, displayWidth*2+2, 3],                   //l
-        [2, displayWidth+2, displayWidth+3, displayWidth*2+3],      //z
-        [2, displayWidth+1, displayWidth+2, displayWidth+3],        //t
-        [1,2, displayWidth+1, displayWidth+2],                      //o
-        [2, displayWidth+2, displayWidth*2+2, displayWidth*3+2]     //i
-    ]
-
-
+    // displaying the next block
     function displayShape() {
         displaySquare.forEach(square => {
             square.classList.remove('tetromino')
             square.classList.remove(randomColor)
         })
         nextTetrominoes[nextRandom].forEach(index => {
-            displaySquare[displayIndex + index].classList.add('tetromino')
-            displaySquare[displayIndex + index].classList.add(nextColor)
+            displaySquare[index].classList.add('tetromino')
+            displaySquare[index].classList.add(nextColor)
         })
     }
 
-    startBtn.addEventListener('click', () => {
-        if(timerId) {
-            clearInterval(timerId)
-            timerId = null
-        }
-        else {
-            draw()
-            timerId = setInterval(moveDown, 500)
-            nextRandom = Math.floor(Math.random() * tetrominoes.length)
-            nextColor = colors[Math.floor(Math.random()*colors.length)]
-            displayShape()
-        }
-    })
-
+    // adding points to score
     function addScore() {
         for(let i = 0; i < 199; i+=width) {
             const row = [i,i+1,i+2,i+3,i+4,i+5,i+6,i+7,i+8,i+9]
@@ -210,10 +134,43 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     }
 
+    // losing the game
     function gameOver() {
         if(current.some(index => squares[currentPosition + index].classList.contains('taken'))){
             scoreDisplay.innerHTML = "end"
             clearInterval(timerId)
         }
     }
+
+    document.addEventListener("keypress", (event) => {
+        const pressedKey = event.key
+        console.log(pressedKey)
+        if(pressedKey === "a"){
+            moveLeft()
+        }
+        if(pressedKey === "d"){
+            moveRight()
+        }
+        if(pressedKey === "s"){
+            moveDown()
+        }
+        if(pressedKey === "w"){
+            rotate()
+        }
+    })
+
+    startBtn.addEventListener('click', () => {
+        if(timerId) {
+            clearInterval(timerId)
+            timerId = null
+        }
+        else {
+            draw()
+            timerId = setInterval(moveDown, 500)
+            nextRandom = Math.floor(Math.random() * tetrominoes.length)
+            nextColor = colors[Math.floor(Math.random()*colors.length)]
+            displayShape()
+        }
+    })
+
 })
