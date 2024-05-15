@@ -77,11 +77,17 @@ document.addEventListener('DOMContentLoaded', () =>{
     }
     function rotate() {
         undraw()
-        currentRotation++
-        if(currentRotation === current.length){
-            currentRotation = 0
+        const isEdge = current.some(index => 
+            (currentPosition + index + 1) % width === 0 || (currentPosition + index) % width === 0
+        )
+        if (!isEdge){
+            currentRotation++
+            if(currentRotation === current.length){
+                currentRotation = 0
+            }
+            current = tetrominoes[random][currentRotation]
         }
-        current = tetrominoes[random][currentRotation]
+        
         draw()
     }
 
