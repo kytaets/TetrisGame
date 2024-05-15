@@ -155,8 +155,10 @@ document.addEventListener('DOMContentLoaded', () =>{
     // losing the game
     function gameOver() {
         if(current.some(index => squares[currentPosition + index].classList.contains('taken'))){
-            scoreDisplay.innerHTML = "end"
             clearInterval(timerId)
+            scoreDisplay.innerHTML = "end"
+            alert("Game is over😓 Try again!")
+            window.location.href = "/"
         }
     }
 
