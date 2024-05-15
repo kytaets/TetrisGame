@@ -44,51 +44,59 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     // moving block down, left, right and rotation
     function moveDown() {
-        undraw()
-        currentPosition += width
-        draw()
-        freeze()
+        if(timerId){
+            undraw()
+            currentPosition += width
+            draw()
+            freeze()
+        }
     }
     function moveLeft(){
-        undraw()
-        const isEdge = current.some(index => 
-            (currentPosition + index) % width === 0
-        )
+        if(timerId){
+            undraw()
+            const isEdge = current.some(index => 
+                (currentPosition + index) % width === 0
+            )
 
-        if (!isEdge) 
-            currentPosition -=1
-        if(current.some(index => squares[currentPosition + index].classList.contains("taken")))
-            currentPosition +=1
+            if (!isEdge) 
+                currentPosition -=1
+            if(current.some(index => squares[currentPosition + index].classList.contains("taken")))
+                currentPosition +=1
 
-        draw()
+            draw()
+        }
     }
     function moveRight(){
-        undraw()
-        const isEdge = current.some(index => 
-            (currentPosition + index + 1) % width === 0
-        )
-        
-        if (!isEdge) 
-            currentPosition +=1
-        if(current.some(index => squares[currentPosition + index].classList.contains("taken")))
-            currentPosition -=1
+        if(timerId){
+            undraw()
+            const isEdge = current.some(index => 
+                (currentPosition + index + 1) % width === 0
+            )
+            
+            if (!isEdge) 
+                currentPosition +=1
+            if(current.some(index => squares[currentPosition + index].classList.contains("taken")))
+                currentPosition -=1
 
-        draw()
+            draw()
+        }
     }
     function rotate() {
-        undraw()
-        const isEdge = current.some(index => 
-            (currentPosition + index + 1) % width === 0 || (currentPosition + index) % width === 0
-        )
-        if (!isEdge){
-            currentRotation++
-            if(currentRotation === current.length){
-                currentRotation = 0
+        if(timerId){
+            undraw()
+            const isEdge = current.some(index => 
+                (currentPosition + index + 1) % width === 0 || (currentPosition + index) % width === 0
+            )
+            if (!isEdge){
+                currentRotation++
+                if(currentRotation === current.length){
+                    currentRotation = 0
+                }
+                current = tetrominoes[random][currentRotation]
             }
-            current = tetrominoes[random][currentRotation]
+            draw()
         }
         
-        draw()
     }
 
     // actions when the block reach the bottom
