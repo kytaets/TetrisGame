@@ -4,14 +4,18 @@ document.addEventListener('DOMContentLoaded', () =>{
     const grid = document.querySelector('.grid');                        // selecting working area of cells
     let squares = Array.from(document.querySelectorAll('.grid div'));    // selecting all cells
     const scoreDisplay = document.querySelector('#score');
+    const levelDisplay = document.querySelector("#level");
     const startBtn = document.querySelector('#start-btn');
-    const displaySquare = document.querySelectorAll('.mini-grid div')    // selecting area for the next block   
+    const displaySquare = document.querySelectorAll('.mini-grid div');   // selecting area for the next block   
 
     const width = 10;
     let nextRandom = 0;
     let nextColor;
     let timerId;
+    let timer = 1000;
+    let levelTimer;
     let score = 0;
+    let level = 1;
 
     let currentPosition = 4;
     let currentRotation = 0;
@@ -142,6 +146,15 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     }
 
+    // speeding up when reaches the time
+    function levelUp(){
+        level++
+        timer /= 1.25
+        levelDisplay.innerHTML = level
+        clearInterval(timerId)
+        timerId = setInterval(moveDown, timer)
+    }
+
     document.addEventListener("keypress", (event) => {
         const pressedKey = event.key
         console.log(pressedKey)
@@ -162,11 +175,13 @@ document.addEventListener('DOMContentLoaded', () =>{
     startBtn.addEventListener('click', () => {
         if(timerId) {
             clearInterval(timerId)
+            clearInterval(levelTimer)
             timerId = null
         }
         else {
             draw()
-            timerId = setInterval(moveDown, 500)
+            timerId = setInterval(moveDown, timer)
+            levelTimer = setInterval(levelUp, 10000)
             nextRandom = Math.floor(Math.random() * tetrominoes.length)
             nextColor = colors[Math.floor(Math.random()*colors.length)]
             displayShape()
