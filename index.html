@@ -6,9 +6,14 @@
     <link rel="icon" type="image/x-icon" href="./images/tetris-icon.ico">
     <title>Tetris Game</title>
     <script src="script.js" type="module" charset="utf-8"></script>
+    <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <!-- fonts -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -28,6 +33,19 @@
     </div>
 
     <div class="container">
+        <div class="rules-container">
+            <h3 class="rules-heading">Game rules:</h3>
+            <ul>
+                <li>Use "A" to move left</li>
+                <li>Use "D" to move left</li>
+                <li>Use "W" to rotate brick</li>
+                <li>Use "S" to move down faster</li>
+            </ul>
+        </div>
+
+        <div class="tree-container">
+            <img src="./images/tree-image.png" alt="tree-image" class="tree-image">
+        </div>
         <div class="grid">
             <div></div>
             <div></div>
@@ -241,7 +259,10 @@
             <div class="taken"></div>
             <div class="taken"></div>
         </div>
-
+        <div class="tree-container">
+            <img src="./images/tree-image.png" alt="tree-image" class="tree-image">
+        </div>
+        
         <div class="crane-container">
             <div class="mini-grid">
                 <div></div>

@@ -49,11 +49,37 @@ button {
     margin: 30px;
 }
 
+.rules-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 250px;
+    margin: 50px;
+    margin-right: 150px;
+    background-color:#4299e1;
+    border-radius: 10%;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0; 
+    margin: 0; 
+}
+
+li {
+    margin: 10px;
+    font-size: 20px;
+    font-family: "Radio Canada Big", sans-serif;
+}
+
+.rules-heading {
+    text-align: start;
+}
+
 .crane-container {
     width: 532px;
     height: 470px;
     margin-left: 50px;
-    margin-right: 200px;
     background-image: url("./images/crane-image.png");
 
     display: flex;
@@ -75,13 +101,23 @@ button {
     width: 20px;
 }
 
+.tree-container {
+    display: flex;
+    align-items: end;
+    height: 411.2px;
+    margin-top: 50px;
+}
+.tree-image {
+    width: 80px;
+    border-bottom: 3mm ridge rgb(54, 255, 74);
+}
+
 .mini-grid {
     margin-top: 100px;
     width: 80px;
     height: 80px;
     display: flex;
     flex-wrap: wrap;
-    /* border: 3mm ridge rgb(54, 255, 74); */
 }
 
 .mini-grid div {
