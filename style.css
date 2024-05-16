@@ -40,22 +40,28 @@ button {
     font-weight: 700;
     color: white;
     line-height: 26px;
+}
 
+.container-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;  
+    margin: 30px;
 }
 
 .container {
     display: flex;
-    justify-content: end;
-    margin: 30px;
+    justify-content: center;
 }
 
+
+
 .rules-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
     height: 250px;
+    width: auto;
     margin: 50px;
-    margin-right: 150px;
     background-color:#4299e1;
     border-radius: 10%;
 }
@@ -76,29 +82,24 @@ li {
     text-align: start;
 }
 
-.crane-container {
-    width: 532px;
-    height: 470px;
-    margin-left: 50px;
-    background-image: url("./images/crane-image.png");
-
+.center-container {
     display: flex;
-    justify-content: start;
-    align-items: center;
+    justify-content: center;
 }
 
 .game-field {
     margin-top: 50px;
     width: 200px;
     height: 400px;
-    display: flex;
-    flex-wrap: wrap;
     border-bottom: 3mm ridge rgb(54, 255, 74);
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(20, 1fr);
 }
 
-.game-field div {
-    height: 20px;
-    width: 20px;
+.block {
+    border-style: outset;
+    border-color: black;
 }
 
 .tree-container {
@@ -112,24 +113,24 @@ li {
     border-bottom: 3mm ridge rgb(54, 255, 74);
 }
 
+.crane-container {
+    width: 532px;
+    height: 470px;
+    margin-left: 50px;
+    background-image: url("./images/crane-image.png");
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
 .display-field {
     margin-top: 100px;
     width: 80px;
     height: 80px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.display-field div {
-    height: 20px;
-    width: 20px;
-}
-
-.block {
-    height: 15.2px !important;
-    width: 15.2px !important;
-    border-style: outset;
-    border-color: black
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
 }
 
 .red {
