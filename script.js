@@ -183,18 +183,17 @@ function levelUp() {
 }
 
 document.addEventListener("keypress", (event) => {
-    const pressedKey = event.key
-    console.log(pressedKey)
-    if(pressedKey === "a"){
+    const pressedKey = event.code
+    if(pressedKey === "KeyA"){
         moveLeft()
     }
-    if(pressedKey === "d"){
+    if(pressedKey === "KeyD"){
         moveRight()
     }
-    if(pressedKey === "s"){
+    if(pressedKey === "KeyS"){
         moveDown()
     }
-    if(pressedKey === "w"){
+    if(pressedKey === "KeyW"){
         rotate()
     }
 })
