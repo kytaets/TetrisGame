@@ -1,17 +1,18 @@
-import {tetrominoes, colors, nextTetrominoes} from './shapes.js'
+import {shapes, colors, nextShapes} from './shapes.js'
 
-document.addEventListener('DOMContentLoaded', () =>{
-    const grid = document.querySelector('.grid');                        // selecting working area of cells
-    let squares = Array.from(document.querySelectorAll('.grid div'));    // selecting all cells
+document.addEventListener('DOMContentLoaded', () => {
+    // Game elements
+    const gameField = document.querySelector('.game-field');                    // selecting working area of cells
+    let squares = Array.from(document.querySelectorAll('.game-field div'));     // selecting all cells
     const scoreDisplay = document.querySelector('#score');
     const levelDisplay = document.querySelector("#level");
-    const startBtn = document.querySelector('#start-btn');
-    const displaySquare = document.querySelectorAll('.mini-grid div');   // selecting area for the next block   
+    const buttonStart = document.querySelector('#start-btn');
+    const displayField = document.querySelectorAll('.display-field div');       // selecting area for the next block   
     
     // Sounds
-    const gameOverSound = new Audio("./sounds/game-over.mp3")
-    const levelUpSound = new Audio("./sounds/level-up.mp3")
-    const rowClearSound = new Audio("./sounds/row-clear.mp3")
+    const gameOverSound = new Audio("./sounds/game-over.mp3");
+    const levelUpSound = new Audio("./sounds/level-up.mp3");
+    const rowClearSound = new Audio("./sounds/row-clear.mp3");
 
     const width = 10;
     let nextRandom = 0;
@@ -26,14 +27,14 @@ document.addEventListener('DOMContentLoaded', () =>{
     let currentRotation = 0;
 
     // choosing random shape block
-    let random = Math.floor(Math.random()*tetrominoes.length);
+    let random = Math.floor(Math.random()*shapes.length);
     let randomColor = colors[Math.floor(Math.random()*colors.length)];
-    let current = tetrominoes[random][currentRotation];
+    let current = shapes[random][currentRotation];
 
     // draw the block
     function draw() {
         current.forEach(index => {
-            squares[currentPosition + index].classList.add('tetromino')
+            squares[currentPosition + index].classList.add('block')
             squares[currentPosition + index].classList.add(randomColor)
         })
     }
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     // undraw the block
     function undraw() {
         current.forEach(index => {
-            squares[currentPosition + index].classList.remove('tetromino')
+            squares[currentPosition + index].classList.remove('block')
             squares[currentPosition + index].classList.remove(randomColor)
 
         })
@@ -94,10 +95,9 @@ document.addEventListener('DOMContentLoaded', () =>{
             )
             if (!isEdge){
                 currentRotation++
-                if(currentRotation === current.length){
+                if(currentRotation === current.length)
                     currentRotation = 0
-                }
-                current = tetrominoes[random][currentRotation]
+                current = shapes[random][currentRotation]
             }
             draw()
         }
@@ -111,13 +111,13 @@ document.addEventListener('DOMContentLoaded', () =>{
                 squares[currentPosition + index].classList.add("taken")
             })
             random = nextRandom
-            nextRandom = Math.floor(Math.random() * tetrominoes.length)
-
+            nextRandom = Math.floor(Math.random() * shapes.length)
             randomColor = nextColor
             nextColor = colors[Math.floor(Math.random()*colors.length)]
 
-            current = tetrominoes[random][currentRotation]
+            current = shapes[random][currentRotation]
             currentPosition = 4
+
             draw()
             displayShape()
             addScore()
@@ -127,13 +127,13 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     // displaying the next block
     function displayShape() {
-        displaySquare.forEach(square => {
-            square.classList.remove('tetromino')
+        displayField.forEach(square => {
+            square.classList.remove('block')
             square.classList.remove(randomColor)
         })
-        nextTetrominoes[nextRandom].forEach(index => {
-            displaySquare[index].classList.add('tetromino')
-            displaySquare[index].classList.add(nextColor)
+        nextShapes[nextRandom].forEach(index => {
+            displayField[index].classList.add('block')
+            displayField[index].classList.add(nextColor)
         })
     }
 
@@ -148,12 +148,12 @@ document.addEventListener('DOMContentLoaded', () =>{
                 scoreDisplay.innerHTML = score
                 row.forEach(index => {
                     squares[index].classList.remove('taken')
-                    squares[index].classList.remove('tetromino')
+                    squares[index].classList.remove('block')
                     squares[index].removeAttribute("class")
                 })
                 const squaresRemoved = squares.splice(i, width)
                 squares = squaresRemoved.concat(squares)
-                squares.forEach(cell => grid.appendChild(cell))
+                squares.forEach(cell => gameField.appendChild(cell))
             }
         }
     }
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     })
 
-    startBtn.addEventListener('click', () => {
+    buttonStart.addEventListener('click', () => {
         if(timerId) {
             clearInterval(timerId)
             clearInterval(levelTimer)
@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () =>{
             draw()
             timerId = setInterval(moveDown, timer)
             levelTimer = setInterval(levelUp, 10000)
-            nextRandom = Math.floor(Math.random() * tetrominoes.length)
+            nextRandom = Math.floor(Math.random() * shapes.length)
             nextColor = colors[Math.floor(Math.random()*colors.length)]
             displayShape()
         }

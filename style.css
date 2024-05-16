@@ -87,7 +87,7 @@ li {
     align-items: center;
 }
 
-.grid {
+.game-field {
     margin-top: 50px;
     width: 200px;
     height: 400px;
@@ -96,7 +96,7 @@ li {
     border-bottom: 3mm ridge rgb(54, 255, 74);
 }
 
-.grid div {
+.game-field div {
     height: 20px;
     width: 20px;
 }
@@ -112,7 +112,7 @@ li {
     border-bottom: 3mm ridge rgb(54, 255, 74);
 }
 
-.mini-grid {
+.display-field {
     margin-top: 100px;
     width: 80px;
     height: 80px;
@@ -120,12 +120,12 @@ li {
     flex-wrap: wrap;
 }
 
-.mini-grid div {
+.display-field div {
     height: 20px;
     width: 20px;
 }
 
-.tetromino {
+.block {
     height: 15.2px !important;
     width: 15.2px !important;
     border-style: outset;
