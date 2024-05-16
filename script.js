@@ -146,14 +146,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 score += 10
                 rowClearSound.play()
                 scoreDisplay.innerHTML = score
+
                 row.forEach(index => {
                     squares[index].classList.remove('taken')
                     squares[index].classList.remove('block')
                     squares[index].removeAttribute("class")
                 })
+                
+                clearInterval(timerId)
                 const squaresRemoved = squares.splice(i, width)
                 squares = squaresRemoved.concat(squares)
                 squares.forEach(cell => gameField.appendChild(cell))
+                timerId = setInterval(moveDown, timer)
             }
         }
     }
