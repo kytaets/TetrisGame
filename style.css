@@ -53,12 +53,15 @@ button {
     justify-content: center;
 }
 
+.rules-heading {
+    text-align: start;
+}
 
-
-.rules-container {
+.rules {
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 2fr;
     grid-template-columns: 1fr;
+
     height: 250px;
     width: auto;
     margin: 50px;
@@ -69,7 +72,7 @@ button {
 ul {
     list-style-type: none;
     padding: 0; 
-    margin: 0; 
+    margin: 0;
 }
 
 li {
@@ -78,9 +81,6 @@ li {
     font-family: "Radio Canada Big", sans-serif;
 }
 
-.rules-heading {
-    text-align: start;
-}
 
 .center-container {
     display: flex;
@@ -147,4 +147,58 @@ li {
 }
 .blue {
     background-color: blue;
+}
+
+@media screen and (max-width: 1448px) {
+    .rules-container {
+        grid-column: span 3;
+        display: flex;
+        justify-content: center;
+    }
+    .container-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .crane-container {
+        justify-content: center;
+        align-items: end;
+       
+        height: 80px;
+        width: 80px;
+        margin: 0;
+        background-image: none;
+    }
+    .row {
+        display: flex;
+        justify-content: center;
+        grid-row: 1;
+        grid-column: span 3;
+    }
+    .center-container {
+        grid-column: span 3;
+    }
+    .rules-container {
+        grid-row: 3;
+    }
+}
+
+@media screen and (max-width: 460px){
+    .tree-image {
+        display: none;
+    }
+    li {
+        font-size: 15px;
+        text-align: center;
+    }
+    .rules {
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .rules-heading {
+        text-align: center;
+    }
 }
