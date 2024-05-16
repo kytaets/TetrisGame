@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     squares[index].classList.remove('block')
                     squares[index].removeAttribute("class")
                 })
-                
+
                 clearInterval(timerId)
                 const squaresRemoved = squares.splice(i, width)
                 squares = squaresRemoved.concat(squares)
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(timerId)
             scoreDisplay.innerHTML = "end"
             gameOverSound.play()
-            alert("Game is over😓 Try again!")
+            alert(`Game is over😓 Try again! Your score: ${score}`)
             window.location.href = "/"
         }
     }
