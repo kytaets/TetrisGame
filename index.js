@@ -56,7 +56,7 @@ function moveDown() {
         freeze()
     }
 }
-function moveLeft(){
+function moveLeft() {
     if(timerId){
         undraw()
         const isEdge = current.some(index => 
@@ -71,7 +71,7 @@ function moveLeft(){
         draw()
     }
 }
-function moveRight(){
+function moveRight() {
     if(timerId){
         undraw()
         const isEdge = current.some(index => 
@@ -173,7 +173,7 @@ function gameOver() {
 }
 
 // speeding up when reaches the time
-function levelUp(){
+function levelUp() {
     level++
     timer /= 1.25
     levelUpSound.play()
