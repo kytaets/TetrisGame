@@ -55,8 +55,19 @@ button {
     justify-content: center;
 }
 
+.rules-container {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+}
+
+.heading-row {
+    display: flex;
+    align-items: center;
+}
 .rules-heading {
     text-align: start;
+    font-size: 3rem;
 }
 
 .rules {
@@ -69,6 +80,8 @@ button {
     margin: 50px;
     background-color:#4299e1;
     border-radius: 10%;
+
+    height: 80%;
 }
 
 ul {
@@ -206,6 +219,12 @@ li {
         font-size: 15px;
         text-align: center;
     }
+    .heading-row {
+        justify-content: center;
+    }
+    .rules-heading {
+        font-size: 2rem;
+    }
     .rules {
         height: 300px;
         display: flex;
@@ -222,5 +241,33 @@ li {
         text-align: center;
         grid-row: 4 !important;
     }
-    
+}
+
+@media screen and (min-width: 1900px) { 
+    .rules-heading {
+        font-size: 4rem;
+    }
+    li {
+        font-size: 2rem;
+    }
+    #title {
+        font-size: 4rem
+    }
+    #score-heading, #level-heading {
+        font-size: 3rem
+    }
+}
+@media screen and (min-width: 3000px) { 
+    .rules-heading {
+        font-size: 5rem;
+    }
+    li {
+        font-size: 3rem;
+    }
+    #title {
+        font-size: 5rem
+    }
+    #score-heading, #level-heading {
+        font-size: 4rem
+    }
 }

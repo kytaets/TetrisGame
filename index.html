@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>
+    <h1 id="title">
         <span style="color: red;">T</span> 
         <span style="color: orange;">e</span> 
         <span style="color: green;">t</span> 
@@ -25,8 +25,8 @@
         <span style="color: hotpink;">s</span>
         Game
     </h1>
-    <h3>Score: <span id="score">0</span></h3>
-    <h3>Level: <span id="level">1</span></h3>
+    <h3 id="score-heading">Score: <span id="score">0</span></h3>
+    <h3 id="level-heading">Level: <span id="level">1</span></h3>
 
     <div class="btn-div">
         <button id="start-btn">Start/Pause</button>
@@ -36,7 +36,9 @@
 
         <div class="rules-container">
             <div class="rules">
-                <h3 class="rules-heading">Game rules:</h3>
+                <div class="heading-row">
+                    <h3 class="rules-heading">Game rules:</h3>
+                </div>
                 <ul>
                     <li>Use "A" to move left</li>
                     <li>Use "D" to move left</li>
