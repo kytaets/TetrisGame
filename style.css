@@ -149,7 +149,7 @@ li {
 .crane {
     width: 532px;
     height: 470px;
-    margin-left: 50px;
+    margin-left: 0;
     background-image: url("./images/crane-image.png");
 
     display: flex;
@@ -272,6 +272,15 @@ li {
     .tree-image {
         width: 100px;
     }
+    .display-field {
+        width: 120px;
+        height: 120px;
+    }
+    .crane{
+        width: 635px;
+        height: 600px;
+        background-image: url("./images/crane-image-large.png");
+    }
 }
 
 @media screen and (min-width: 3000px) { 
@@ -297,5 +306,15 @@ li {
     .tree-image {
         width: 120px;
     }
+    .display-field {
+        width: 160px;
+        height: 160px;
+    }
+    .crane{
+        width: 770px;
+        height: 750px;
+        background-image: url("./images/crane-image-extra-large.png");
+    }
+    
     
 }
