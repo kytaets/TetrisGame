@@ -25,21 +25,23 @@ h3 {
 }
 
 button {
-    width: 200px;
-    height: 50px;
-    
     display: inline-block;
     outline: 0;
     border: 0;
     cursor: pointer;
     background-color: #4299e1;
     border-radius: 4px;
-    padding: 8px 16px;
     font-size: 16px;
     border-bottom: 4px solid #2b6cb0;
-    font-weight: 700;
     color: white;
     line-height: 26px;
+}
+
+#start-btn {
+    padding: 8px 16px;
+    width: 200px;
+    height: 50px;
+    font-weight: 700;
 }
 
 .container-grid {
@@ -111,6 +113,18 @@ li {
 .tree-image {
     width: 80px;
     border-bottom: 3mm ridge rgb(54, 255, 74);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.game-btn {
+    padding: 2px 2px;
+    width: 50px;
+    height: 50px;
 }
 
 .crane-container {
@@ -198,7 +212,15 @@ li {
         flex-direction: column;
         justify-content: center;
     }
-    .rules-heading {
-        text-align: center;
+    .button-container {
+        grid-row: 3;
+        grid-column: span 3 ;
+        display: flex !important;
+        justify-content: center !important;
     }
+    .rules-container {
+        text-align: center;
+        grid-row: 4 !important;
+    }
+    
 }
