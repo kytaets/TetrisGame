@@ -1,5 +1,6 @@
 body {
     background-color: #A8E0F5;
+    height: 100vh;
 }
 
 h1, h3{
@@ -44,21 +45,19 @@ button {
     font-weight: 700;
 }
 
-.container-grid {
+.container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;  
     margin: 30px;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
+    height: 70%;
 }
 
 .rules-container {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
 }
 
 .heading-row {
@@ -81,7 +80,7 @@ button {
     background-color:#4299e1;
     border-radius: 10%;
 
-    height: 80%;
+    height: 60%;
 }
 
 ul {
@@ -100,6 +99,7 @@ li {
 .center-container {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .game-field {
@@ -141,6 +141,12 @@ li {
 }
 
 .crane-container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.crane {
     width: 532px;
     height: 470px;
     margin-left: 50px;
@@ -182,13 +188,13 @@ li {
         display: flex;
         justify-content: center;
     }
-    .container-grid {
+    .container {
         grid-template-columns: 1fr 1fr;
     }
 }
 
 @media screen and (max-width: 992px) {
-    .crane-container {
+    .crane {
         justify-content: center;
         align-items: end;
        
@@ -197,7 +203,7 @@ li {
         margin: 0;
         background-image: none;
     }
-    .row {
+    .crane-container {
         display: flex;
         justify-content: center;
         grid-row: 1;
@@ -256,7 +262,18 @@ li {
     #score-heading, #level-heading {
         font-size: 3rem
     }
+    .game-field {
+        width: 300px;
+        height: 600px;
+    }
+    .tree-container {
+        height: 611.2px;
+    }
+    .tree-image {
+        width: 100px;
+    }
 }
+
 @media screen and (min-width: 3000px) { 
     .rules-heading {
         font-size: 5rem;
@@ -270,4 +287,15 @@ li {
     #score-heading, #level-heading {
         font-size: 4rem
     }
+    .game-field {
+        width: 400px;
+        height: 800px;
+    }
+    .tree-container {
+        height: 811.2px;
+    }
+    .tree-image {
+        width: 120px;
+    }
+    
 }
