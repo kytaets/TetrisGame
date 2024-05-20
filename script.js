@@ -172,7 +172,7 @@ function gameOver() {
         scoreDisplay.innerHTML = "end"
         gameOverSound.play()
         alert(`Game is over😓 Your score: ${score}`)
-        window.location.href = "./index.html"
+        location.reload()
     }
 }
 
