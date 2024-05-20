@@ -6,6 +6,10 @@ let squares = Array.from(document.querySelectorAll('.game-field div'));     // s
 const scoreDisplay = document.querySelector('#score');
 const levelDisplay = document.querySelector("#level");
 const buttonStart = document.querySelector('#start-btn');
+const buttonA = document.querySelector('#a-btn');
+const buttonD = document.querySelector('#d-btn');
+const buttonW = document.querySelector('#w-btn');
+const buttonS = document.querySelector('#s-btn');
 const displayField = document.querySelectorAll('.display-field div');       // selecting area for the next block   
 
 // Sounds
@@ -212,5 +216,18 @@ buttonStart.addEventListener('click', () => {
         nextColor = colors[Math.floor(Math.random()*colors.length)]
         displayShape()
     }
+})
+
+buttonA.addEventListener('click', ()=> {
+    moveLeft()
+})
+buttonD.addEventListener('click', ()=> {
+    moveRight()
+})
+buttonW.addEventListener('click', ()=> {
+    rotate()
+})
+buttonS.addEventListener('click', ()=> {
+    moveDown()
 })
 
